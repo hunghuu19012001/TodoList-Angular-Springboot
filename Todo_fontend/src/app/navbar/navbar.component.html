@@ -1,0 +1,54 @@
+<!-- <mat-toolbar style="background-color: #ECAB53; color: white;"> -->
+<mat-toolbar>
+    <!-- menu -->
+    <button mat-icon-button class="example-icon" aria-label="Menu" [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+        <mat-menu class="menu" #menu="matMenu">
+          <button mat-menu-item routerLink="/">List of todo</button>
+    <button mat-menu-item (click)="logout()">Log Out</button>
+    </mat-menu>
+    </button>
+
+    <!-- logo -->
+    <div class="logo">
+        <img [src]="logo" alt="logo">
+    </div>
+    <span class="example-spacer"></span>
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button> -->
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button> -->
+    <!-- (click)="openChangeUsernameDialog()" -->
+    <!-- <div class="avatar" >
+        <img [src]="avatarUrl" alt="Avatar">
+      </div> -->
+    <!-- avatar-list -->
+    <button class="avatar-list" mat-icon-button [matMenuTriggerFor]="listAvatar" aria-label="Example icon-button with a menu">
+        <mat-icon>
+          <div class="avatar" >
+          <img [src]="avatarUrl" alt="Avatar">
+          </div>
+        </mat-icon>
+      </button>
+    <mat-menu #listAvatar="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="UserInformation">
+          <mat-icon>dialpad</mat-icon>
+          <span style="color:black">User Information</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span style="color:black">Disable Alerts</span>
+        </button>
+    </mat-menu>
+    <mat-menu #UserInformation="matMenu">
+        <button mat-menu-item routerLink="change-password"> <!-- disabled/delete -->
+          <mat-icon>voicemail</mat-icon>
+          <span style="color:black">Change Password</span>
+        </button>
+    </mat-menu>
+    <span class="username">Welcome, {{ username }}</span>
+    <!-- <button  class="logout" (click)="logout()">Log Out</button> -->
+
+</mat-toolbar>
