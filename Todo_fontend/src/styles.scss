@@ -1,0 +1,33 @@
+// body {
+//     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+//     background-size: 400% 400%;
+//     animation: gradient 15s ease infinite;
+//     height: 100vh;
+//   }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    //background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)
+    background-color: #146C94;
+}
+
+.heading-section {
+    //background-image: url(./assets/bg.png);
+    //background-size: cover; // Đảm bảo hình ảnh nền được căn chỉnh và đủ kích thước để che phủ toàn bộ phần nền
+    //background-position: center; // Đặt vị trí của hình ảnh nền là giữa
+    //background-repeat: no-repeat; // Không lặp lại hình ảnh nền
+    //background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-color: #fff;
+}
+
+// .avatar{
+//     background-image: url(./assets/avartar.jpg);
+//     background-size: cover;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size:contain;
+// }

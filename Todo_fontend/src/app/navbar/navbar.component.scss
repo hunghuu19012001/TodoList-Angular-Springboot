@@ -1,0 +1,67 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    background: #146C94;
+    //background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+}
+
+mat-icon {
+    color: white;
+}
+
+span {
+    color: white;
+}
+
+.logout {
+    background-color: #fff;
+    border-radius: 100px;
+    padding: 2px 10px;
+    font-size: 14px;
+    //font-weight: bold;
+    border: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.logout:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.username {
+    font-size: 15px;
+    color: white;
+    margin-left: -3px;
+}
+
+.avatar img {
+    //width: 30px;
+    //height: 30px;
+    border-radius: 50%;
+    //margin-right: 5px;
+    margin-top: -12px;
+}
+
+.avatar:hover {
+    background-color: whitesmoke;
+    opacity: 0.5;
+    border-radius: 100%;
+}
+
+.logo img {
+    width: 100px;
+    height: 40px;
+    //border-radius: 50%;
+}
+
+.menu {
+    width: 100px;
+}
+
+.mat-menu-content span {
+    color: black;
+}
