@@ -40,25 +40,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //    }
 //}
 @Configuration
-public class GlobalCorsConfiguration implements WebMvcConfigurer {
-
-    @Autowired
-    @Qualifier("corsConfiguration")
-    private CorsConfiguration corsConfiguration;
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200", "http://todolist-springboot-backend.up.railway.app")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*")
-                .exposedHeaders("Authorization")
-                .allowCredentials(true)
-                .maxAge(3600);
-    }
-
+public class GlobalCorsConfiguration {
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new GlobalCorsConfiguration();
+    public CorsConfiguration corsConfiguration() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("http://localhost:4200");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.addExposedHeader("Authorization");
+        corsConfiguration.setAllowCredentials(true);
+        return corsConfiguration;
     }
 }
