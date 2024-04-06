@@ -9,8 +9,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 
+import javax.persistence.Entity;
 import java.util.Date;
-
 
 @Data
 public class TodoItemDto {
