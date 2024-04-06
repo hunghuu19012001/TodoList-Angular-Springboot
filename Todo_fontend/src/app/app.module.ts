@@ -26,6 +26,7 @@ import { RegisterComponent } from './security/register/register.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FullComponent } from './layouts/full/full.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     TodoComponent,
     LoginComponent,
     RegisterComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    FullComponent
 
 
 

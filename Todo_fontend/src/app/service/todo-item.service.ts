@@ -14,7 +14,7 @@ import { AuthenticationService } from './authentication.service';
 export class TodoItemService {
 
 
-  private basUrl = "http://localhost:8080/todo"
+  private basUrl = "https://todolist-angular-springboot-production.up.railway.app/todo"
   todos$: Observable<todo[]>;
 
   constructor(private authService: AuthenticationService,private httpClient: HttpClient, private store: Store<{ todos: todo[] }>) {
@@ -28,14 +28,14 @@ export class TodoItemService {
 
 
   getTodoItemListByUsername(username: string): Observable<todo[]> {   //to take username as parameter
-    const url = `${this.basUrl}/${username}`; 
+    const url = `${this.basUrl}/${username}`;
     return this.httpClient.get<todo[]>(url).pipe(
       tap(todos => {
         this.tasks = todos; // Cập nhật tasks trong TodoComponent
       })
     );
   }
-  
+
  getTodoItemList(): Observable<todo[]> {
     //return this.httpClient.get<todo[]>( `${this.basUrl}`);
     return this.httpClient.get<todo[]>(`${this.basUrl}`).pipe(
@@ -79,7 +79,7 @@ export class TodoItemService {
   //update status
 
   markTodoAsInProgress(id: number) {
-    const url = `${this.basUrl}/${id}/inprogress`;  //call api set.title 
+    const url = `${this.basUrl}/${id}/inprogress`;  //call api set.title
     return this.httpClient.put(url, {});
   }
   markTodoAsDone(id: number) {
