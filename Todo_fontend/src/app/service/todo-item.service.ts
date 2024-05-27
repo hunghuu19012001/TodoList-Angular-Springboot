@@ -14,7 +14,7 @@ import { AuthenticationService } from './authentication.service';
 export class TodoItemService {
 
 
-  private basUrl = "https://todolist-angular-springboot-production.up.railway.app/todo"
+  private basUrl = "http://localhost:8080/todo"
   todos$: Observable<todo[]>;
 
   constructor(private authService: AuthenticationService,private httpClient: HttpClient, private store: Store<{ todos: todo[] }>) {
@@ -56,14 +56,17 @@ export class TodoItemService {
     return this.httpClient.post(url, todoItem);
   }
 
-  updateTodoItem(todo: todo) {
-    this.httpClient.put<todo>(`${this.basUrl}/${todo.id}`, todo).subscribe(
-      updatedTodo => {
-        this.store.dispatch(updateTodo({
-          id: updatedTodo.id,
-          updatedTodo: updatedTodo
-        }));
-      })
+  // updateTodoItem(todo: todo) {
+  //   this.httpClient.put<todo>(`${this.basUrl}/${todo.id}`, todo).subscribe(
+  //     updatedTodo => {
+  //       this.store.dispatch(updateTodo({
+  //         id: updatedTodo.id,
+  //         updatedTodo: updatedTodo
+  //       }));
+  //     })
+  // }
+  updateTodoItem(todo: todo): Observable<void> {
+    return this.httpClient.put<void>(`${this.basUrl}/${todo.id}`, todo);
   }
 
   deleteTodoItem(id: number) {

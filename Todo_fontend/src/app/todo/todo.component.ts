@@ -1,6 +1,6 @@
-import { createTodo } from './../store/models/create.todo.model';
-import { todo } from './../store/models/todo.model';
-import { TodoItemService } from './../service/todo-item.service';
+import { createTodo } from '../store/models/create.todo.model';
+import { todo } from '../store/models/todo.model';
+import { TodoItemService } from '../service/todo-item.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -9,6 +9,9 @@ import { select, Store } from '@ngrx/store';
 import { moveTodo } from '../store/actions/todo.actions';
 import { AuthenticationService } from '../service/authentication.service';
 import { JwtService } from '../service/jwt.service';
+import { AddTaskDialogComponent } from './add-task-dialog/add-task-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-todo',
@@ -22,7 +25,7 @@ export class TodoComponent {
   done: todo[] = [];
   updateIndex: number | undefined = undefined;
 
-  isEditEnabled: boolean = false;
+  isEdit: boolean = false;
 
   todo: todo = {
     id: 0,
@@ -34,7 +37,8 @@ export class TodoComponent {
     private todoItemService: TodoItemService,
     private store: Store<AppState>,
     private jwtService: JwtService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private dialog: MatDialog /////
   ) {
     this.logo = 'https://upload.wikimedia.org/wikipedia/commons/8/81/Frente_de_Todos_2019.png'
   }
@@ -72,51 +76,89 @@ export class TodoComponent {
   }
 
 
-  addTask() {
-    var item: createTodo = {
+  // addTask(status: string) {
+  //   var item: createTodo = {
 
-      title: this.todo.title,
-      status: 'new todo',
-    };
+  //     title: this.todo.title,
+  //     status: status,
+  //   };
 
-    this.todoItemService.createTodoItem(item).subscribe(() => {
-      this.getAllData();
-    });
-    //this.store.dispatch(addTodo({ todo: newTodo }));
+  //   this.todoItemService.createTodoItem(item).subscribe(() => {
+  //     this.getAllData();
+  //   });
+  //   //this.store.dispatch(addTodo({ todo: newTodo }));
 
-    this.todo = {
-      id: 0,
-      title: '',
-      status: 'new todo'
+  //   this.todo = {
+  //     id: 0,
+  //     title: '',
+  //     status: 'new todo'
 
-    };
-    this.getAllData()
-  }
+  //   };
+  //   this.getAllData()
+  // }
+addTask(status: string): void{
 
-  onEdit(item: todo, i: number) {
+  const dialogRef = this.dialog.open(AddTaskDialogComponent,{
+    data: {  isEdit: false }
+  });
+
+  dialogRef.afterClosed().subscribe(result =>{
+    if(result){
+      this.createNewTask(result, status);
+    }
+  })
+}
+createNewTask(title: string, status: string):void{
+  const item: createTodo = {title, status};
+  this.todoItemService.createTodoItem(item).subscribe(() => {
+    this.getAllData();
+  });
+}
+
+
+
+  /*onEdit(item: todo, i: number) {
     this.todo = item;
     this.updateIndex = i;
     this.isEditEnabled = true;
 
+  }*/
+
+  // updateTask() {
+  //   //const userDto = JSON.parse(sessionStorage.getItem("userDto") as string);
+
+  //   this.todoItemService.updateTodoItem(this.todo)
+  //   /*this.store.dispatch(updateTodo({
+  //     id: this.todo.id,
+  //     updatedTodo: this.todo
+  //   }));*/
+  //   this.todo = {
+  //     id: 0,
+  //     title: '',
+  //     status: 'new todo',
+  //   };
+  //   this.updateIndex = undefined;
+  //   this.isEditEnabled = false;
+  //   console.log(this.todo)
+  // }
+  onEdit(item: todo, i: number): void {
+    const dialogRef = this.dialog.open(AddTaskDialogComponent, {
+      data: { title: item.title, isEdit: true }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateTask(item.id, result);
+      }
+    });
   }
 
-  updateTask() {
-    //const userDto = JSON.parse(sessionStorage.getItem("userDto") as string);
-
-    this.todoItemService.updateTodoItem(this.todo)
-    /*this.store.dispatch(updateTodo({
-      id: this.todo.id,
-      updatedTodo: this.todo
-    }));*/
-    this.todo = {
-      id: 0,
-      title: '',
-      status: 'new todo',
-    };
-    this.updateIndex = undefined;
-    this.isEditEnabled = false;
-    console.log(this.todo)
+  updateTask(id: number, title: string): void {
+    this.todoItemService.updateTodoItem({ id, title, status: this.todo.status }).subscribe(() => {
+      this.getAllData();
+    });
   }
+
 
   deleteTask(item: todo) {
 

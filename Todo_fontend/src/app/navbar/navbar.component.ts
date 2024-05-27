@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  currentDate: Date = new Date(); // hien thi ngay
+
 
   avatarUrl: string ;
   logo: string;

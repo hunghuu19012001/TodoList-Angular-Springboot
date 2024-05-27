@@ -17,7 +17,7 @@ export class AuthenticationService {
 //store JWT token in session
   authenticate(username: string, password: string) {
     return this.httpClient
-      .post<any>("https://todolist-angular-springboot-production.up.railway.app/authenticate", { username, password })
+      .post<any>("http://localhost:8080/authenticate", { username, password })
       .pipe(
         map(userData => {
           sessionStorage.setItem("username", username);
@@ -31,7 +31,7 @@ export class AuthenticationService {
   }
   register(username : string, password: string){
     return this.httpClient
-      .post<any>("https://todolist-angular-springboot-production.up.railway.app/register",{username, password})
+      .post<any>("http://localhost:8080/register",{username, password})
       .pipe(
         map(response => {
           console.log('Registered successfully');
@@ -60,7 +60,8 @@ export class AuthenticationService {
         newPassword: newPassword
       };
       this.error = '';
-      return this.httpClient.post<any>('https://todolist-angular-springboot-production.up.railway.app/change-password', request);
+      return this.httpClient.post<any>('http://localhost:8080/change-password', request);
+      // return this.httpClient.post<any>('https://todolist-angular-springboot-production.up.railway.app/change-password', request);
     }
 
 

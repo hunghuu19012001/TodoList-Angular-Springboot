@@ -1,84 +1,171 @@
-<app-navbar></app-navbar>
-<section class="heading-section">
-    <!-- <h1 class="title is-1 has-text-centered">TODOS</h1> -->
-    <div class="logo">
-        <img [src]="logo" alt="">
+<div class="container-dashboard">
+
+    <div class="container-1">
+        <app-slidebar></app-slidebar>
     </div>
-</section>
+    <!-- <div class="container-2">
 
-<div class="container-fluid">
-    <!-- <div class="row"> -->
-    <div class="container" style="width: 100%; height: 100px;">
-        <div class="add-to-box">
-            <h5>New Todo</h5>
-            <mat-card class="mt-3">
-                <mat-form-field style="width: 100%; padding: 10px; margin-bottom: -20px; height: 90px;">
-
-                    <input class="input" [(ngModel)]="todo.title" matInput placeholder="Type todo text here">
-                    <mat-icon style="margin-top: -10px;" matSuffix>add_task</mat-icon>
-                </mat-form-field>
-
-                <button *ngIf="!isEditEnabled" (click)="addTask()" mat-raised-button [disabled]="todo.title == ''" color="primary">Add</button>
-                <button *ngIf="isEditEnabled" (click)="updateTask()" mat-raised-button [disabled]="todo.id == 0" color="primary">Update</button>
-            </mat-card>
+    </div> -->
+    <div class="container-3">
+        <div class="container3-navbar">
+            <app-navbar></app-navbar>
         </div>
-    </div>
+        <div class="container-menu">
+            <div class="container-menu-l">
+                <div class="menu-l-1">
+                    <i class="material-icons-outlined">dashboard</i>
+                    <h5>Board view</h5>
+                </div>
+                <div class="menu-l-2">
+                    <i class="material-icons-outlined">add</i>
+                    <h5>Add view</h5>
+                </div>
+            </div>
+            <div class="container-menu-r">
+                <div>Filter</div>
+                <div>Sort</div>
+                <div>
+                    <Button>New template</Button>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="container-fluid">
+
+            <div>
+                <div cdkDropListGroup>
+                    <div class="main">
+                        <div class="col-md-3 todo">
+                            <!--to do-->
+                            <div class="todo-head">
+                                <div>
+                                    <h1 class="hed-title">To Do</h1>
+                                </div>
+                                <div>
+                                    <button mat-icon-button color="primary" (click)="addTask('new todo')">
+                                      <mat-icon>add</mat-icon> <!-- Thêm nút New Task -->
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="example-container">
 
 
+                                <div style="width: auto;" cdkDropList [cdkDropListData]="tasks" class="example-list" (cdkDropListDropped)="drop($event)">
+                                    <div class="example-box" *ngFor="let item of tasks; let i = index" cdkDrag>
+                                        <div class="box">
+                                            <span class="item-title">{{item.title}}</span>
+                                            <!-- <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button>
+                                        <button mat-icon-button color="primary" (click)="onEdit(item,i)"><mat-icon>edit</mat-icon></button> -->
+                                            <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
+                                          <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                            <mat-menu #option="matMenu">
+                                                <button mat-menu-item (click)="deleteTask(item)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Delete</span>
+                                            </button>
 
-    <div style="padding: 20px;">
-        <div cdkDropListGroup>
-            <div class="row">
-                <div class="col-md-4">
-                    <!--to do-->
-                    <h1 class="hed-title">To Do</h1>
-                    <div class="example-container">
-
-
-                        <div style="width: auto;" cdkDropList [cdkDropListData]="tasks" class="example-list" (cdkDropListDropped)="drop($event)">
-                            <div class="example-box" *ngFor="let item of tasks; let i = index" cdkDrag>{{item.title}}
-                                <div class="box">
-                                    <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button>
-                                    <button mat-icon-button color="primary" (click)="onEdit(item,i)"><mat-icon>edit</mat-icon></button>
+                                                <button mat-menu-item (click)="onEdit(item,i)">
+                                            <mat-icon>edit</mat-icon>
+                                            <span>Edit</span>
+                                            </button>
+                                            </mat-menu>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
 
 
-                <div class="col-md-4">
-                    <!--inprogress-->
-                    <h1 class="hed-title">In Progress</h1>
-                    <!-- <div class="col-md-4"> -->
-                    <!--to do-->
-                    <div class="example-container">
-                        <div cdkDropList [cdkDropListData]="inprogress" class="example-list" (cdkDropListDropped)="drop($event)">
-                            <div class="example-box" *ngFor="let item of inprogress; let i=index" cdkDrag>{{item.title}}
-                                <div class="box">
-                                    <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button>
-                                    <button mat-icon-button color="primary" (click)="onEdit(item,i)"><mat-icon>edit</mat-icon></button>
+                        <div class="col-md-3 inprogress">
+                            <!--inprogress-->
+                            <div class="inprogress-head">
+                                <div>
+                                    <h1 class="hed-title">In Progress</h1>
+                                </div>
+                                <div>
+                                    <button mat-icon-button color="primary" (click)="addTask('in progress')">
+                                  <mat-icon>add</mat-icon> <!-- Thêm nút New Task -->
+                              </button>
                                 </div>
                             </div>
+
+
+                            <!-- <div class="col-md-4"> -->
+                            <!--to do-->
+                            <div class="example-container">
+                                <div cdkDropList [cdkDropListData]="inprogress" class="example-list" (cdkDropListDropped)="drop($event)">
+                                    <div class="example-box" *ngFor="let item of inprogress; let i=index" cdkDrag>
+
+                                        <div class="box">
+                                            <span class="item-title">{{item.title}}</span>
+                                            <!-- <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button>
+                                            <button mat-icon-button color="primary" (click)="onEdit(item,i)"><mat-icon>edit</mat-icon></button> -->
+                                            <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
+                                              <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #option="matMenu">
+                                                <button mat-menu-item (click)="deleteTask(item)">
+                                                <mat-icon>delete</mat-icon>
+                                                <span>Delete</span>
+                                                </button>
+
+                                                <button mat-menu-item (click)="onEdit(item,i)">
+                                                <mat-icon>edit</mat-icon>
+                                                <span>Edit</span>
+                                                </button>
+                                            </mat-menu>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
 
 
-                <div class="col-md-4">
-                    <!--done-->
-                    <h1 class="hed-title">Done</h1>
-                    <!-- <div class="col-md-4"> -->
-                    <!--to do-->
+                        <div class="col-md-3 done">
+                            <!--done-->
 
-                    <div class="example-container">
 
-                        <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-                            <div class="example-box" *ngFor="let item of done; let i = index" cdkDrag>{{item.title}}
-                                <div class="box">
-                                    <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button>
-                                    <button mat-icon-button color="primary"><mat-icon>check_circle</mat-icon></button>
+                            <div class="done-head">
+                                <div>
+                                    <h1 class="hed-title">Done</h1>
+                                </div>
+                                <div>
+
+                                    <button mat-icon-button color="primary" (click)="addTask('done')">
+                                        <mat-icon>add</mat-icon> <!-- Thêm nút New Task -->
+
+                                    </button>
+
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4"> -->
+                            <!--to do-->
+
+                            <div class="example-container">
+
+                                <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
+                                    <div class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
+
+                                        <div class="box">
+                                            <span class="item-title">{{item.title}}</span>
+                                            <!-- <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button> -->
+                                            <button mat-icon-button color="primary"><mat-icon>check_circle</mat-icon></button>
+
+                                            <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                          </button>
+                                            <mat-menu #option="matMenu">
+                                                <button mat-menu-item (click)="deleteTask(item)">
+                                              <mat-icon>delete</mat-icon>
+                                              <span>Delete</span>
+                                              </button>
+
+                                            </mat-menu>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -87,4 +174,11 @@
             </div>
         </div>
     </div>
+    <!-- <section class="heading-section">
+        <div class="logo">
+            <img [src]="logo" alt="">
+        </div>
+    </section> -->
+
+
 </div>

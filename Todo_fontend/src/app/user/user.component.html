@@ -1,0 +1,26 @@
+<div class="container-dashboard">
+
+    <div class="container-1">
+        <app-slidebar></app-slidebar>
+    </div>
+    <div class="container-3">
+        <div class="container3-navbar">
+            <app-navbar></app-navbar>
+        </div>
+        <div class="user-container">
+            <h2>User Profile</h2>
+            <div class="user-info">
+                <label for="name">Name:</label>
+                <input id="name" type="text" [(ngModel)]="user.name">
+
+                <label for="email">Email:</label>
+                <input id="email" type="email" [(ngModel)]="user.email">
+
+                <label for="password">Password:</label>
+                <input id="password" type="password" [(ngModel)]="user.password">
+
+                <button (click)="save()">Save</button>
+            </div>
+        </div>
+
+    </div>

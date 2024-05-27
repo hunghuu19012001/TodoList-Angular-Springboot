@@ -1,105 +1,245 @@
-.example-full-width {
-    width: 90%;
-  }
+// .example-full-width {
+//     width: 90%;
+//   }
+// mat-card {
+//     margin: 0 auto;
+//     background-color: #fff;
+//     border-radius: 10px;
+//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//     overflow: hidden;
+//     display: flex;
+//     flex-direction: row;
+//     img {
+//         width: 100%;
+//     }
+// }
+// .mat-card-left {
+//     padding: 100px 40px;
+// }
 
-  mat-card {
-    max-width: 500px;
-    margin: 0 auto;
+/* Apply general styles for mat-card */
+
+
+/* Apply general styles for mat-card */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+mat-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-top: 200px;
-    height: 500px;
-    
-
-  }
-  
-  .mat-card-header {
-    background-color: #ECAB53;
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-    padding: 16px 16px 0;
-
-    
-  }
-  
-  .login-header {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 2rem;
-    color: #0c1066;
-    letter-spacing: 0.2rem;
-    font-weight: bold;
-    animation: fadein 1.75s ease-in-out;
-  }
-  mat-form-field {
-    width: 100%;
-    margin-top: 2 0px;
-    
-  }
-  
-  input.mat-input-element {
-    border-radius: 2px;
-    border: none;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    font-size: 16px;
-    color: #555;
-    background-color: #f2f2f2;
-  }
-  
-  mat-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  mat-card-content{
-    margin-top: 50px;
-    margin-left: 80px;
-  }
-  example-full-width{
+    color: #000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     width: 80%;
-  }
-  mat-card-actions {
-    //display: flex;
-    //justify-content: space-between;
-    flex-direction: column;
-    //align-items: center;
-    //background-color: #ECAB53;
-    border-radius: 0 0 10px 10px;
-    padding: 40px;
-    //margin-top: 10px;
-  }
-  
-  button {
-    background-color: #fff;
-    color: #ECAB53;
-    border-radius: 100px;
-    padding: 10px 30px;
-    font-size: 16px;
-    //font-weight: bold;
-    border: 2px solid #ECAB53;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  button:hover {
-    background-color: #23a6d5;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Style for the left part of the card */
+
+.mat-card-left {
+    flex: 1;
+    padding: 20px;
+}
+
+
+/* Style for the right part of the card */
+
+.mat-card-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Header styles */
+
+.login-header {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+
+/* Table styles */
+
+.example-full-width {
+    width: 100%;
+}
+
+
+/* Form field styles */
+
+mat-form-field.example-full-width {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+
+/* Input field styles */
+
+input[matInput] {
+    color: #000;
+}
+
+
+/* Spinner styles */
+
+mat-spinner {
+    margin: 16px 0;
+}
+
+
+/* Error message styles */
+
+.error {
+    color: red;
+}
+
+
+/* Button styles */
+
+button[mat-raised-button] {
+    background-color: #000;
     color: #fff;
-  }
-  .signup-link-wrapper {
-    margin-top: 1rem;
-    animation: slideup 1s ease-in-out;
-  }
-  
-  .signup-link {
-    text-transform: uppercase;
-    margin-top: 1rem;
-    text-decoration: none;
-    color: #ff3a82;
-    margin-left: 1rem;
-  }
+    margin-right: 16px;
+}
+
+
+/* Signup link wrapper styles */
+
+.signup-link-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+
+/* Signup notice styles */
+
+.signup-notice {
+    margin-right: 8px;
+}
+
+
+/* Signup link styles */
+
+.signup-link {
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/* Image styles */
+
+.mat-card-right img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+    mat-card {
+        flex-direction: column;
+    }
+    .mat-card-right {
+        margin-top: 20px;
+    }
+    .mat-card-right img {
+        max-width: 100%;
+    }
+}
+
+//   .mat-card-header {
+//     background-color: #ECAB53;
+//     color: #fff;
+//     border-radius: 10px 10px 0 0;
+//     padding: 16px 16px 0;
+//   }
+//   .login-header {
+//     font-size: 2.5rem;
+//     display: block;
+//     margin-bottom: 2rem;
+//     color: #0c1066;
+//     letter-spacing: 0.2rem;
+//     font-weight: bold;
+//     animation: fadein 1.75s ease-in-out;
+//   }
+//   mat-form-field {
+//     width: 100%;
+//     margin-top: 2 0px;
+//   }
+//   input.mat-input-element {
+//     border-radius: 2px;
+//     border: none;
+//     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+//     padding: 10px;
+//     font-size: 16px;
+//     color: #555;
+//     background-color: #f2f2f2;
+//   }
+//   mat-spinner {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+//   mat-card-content{
+//     margin-top: 50px;
+//     margin-left: 80px;
+//   }
+//   example-full-width{
+//     width: 80%;
+//   }
+//   mat-card-actions {
+//     //display: flex;
+//     //justify-content: space-between;
+//     flex-direction: column;
+//     //align-items: center;
+//     //background-color: #ECAB53;
+//     border-radius: 0 0 10px 10px;
+//     padding: 40px;
+//     //margin-top: 10px;
+//   }
+//   button {
+//     background-color: #fff;
+//     color: #ECAB53;
+//     border-radius: 100px;
+//     padding: 10px 30px;
+//     font-size: 16px;
+//     //font-weight: bold;
+//     border: 2px solid #ECAB53;
+//     transition: all 0.3s ease;
+//     cursor: pointer;
+//     margin-left: 10px;
+//   }
+//   button:hover {
+//     background-color: #23a6d5;
+//     color: #fff;
+//   }
+//   .signup-link-wrapper {
+//     margin-top: 1rem;
+//     animation: slideup 1s ease-in-out;
+//   }
+//   .signup-link {
+//     text-transform: uppercase;
+//     margin-top: 1rem;
+//     text-decoration: none;
+//     color: #ff3a82;
+//     margin-left: 1rem;
+//   }

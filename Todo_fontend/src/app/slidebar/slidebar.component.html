@@ -1,0 +1,30 @@
+<div class="slidebar">
+    <div class="logo">
+        <img src="../../assets/roy-logo.png" alt="Logo">
+    </div>
+    <div class="menu-items">
+        <div class="menu-item" routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="material-icons-outlined">dashboard</i>
+
+        </div>
+        <div class="menu-item" routerLink="/user" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="material-icons-outlined">person</i>
+
+        </div>
+        <div class="menu-item">
+
+            <i class="material-icons-outlined">calendar_today</i>
+
+        </div>
+        <div class="menu-item">
+
+            <i class="material-icons-outlined">email</i>
+
+        </div>
+        <div class="menu-item">
+
+            <i class="material-icons-outlined" (click)="logout()">logout</i>
+        </div>
+    </div>
+
+</div>

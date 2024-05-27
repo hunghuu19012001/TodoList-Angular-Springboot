@@ -27,6 +27,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FullComponent } from './layouts/full/full.component';
+import { SlidebarComponent } from './slidebar/slidebar.component';
+import { AddTaskDialogComponent } from './todo/add-task-dialog/add-task-dialog.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { FullComponent } from './layouts/full/full.component';
     LoginComponent,
     RegisterComponent,
     ChangePasswordComponent,
-    FullComponent
+    FullComponent,
+    SlidebarComponent,
+    AddTaskDialogComponent,
+    UserComponent
 
 
 
