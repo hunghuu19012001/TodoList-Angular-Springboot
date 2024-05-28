@@ -9,15 +9,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddTaskDialogComponent {
   title: string = '';
+  description: string = '';
+  status: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<AddTaskDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:{title: string, isEdit:boolean}
+    @Inject(MAT_DIALOG_DATA) public data:{title: string, description: string, status: string, isEdit:boolean}
   ){
 
     if (data && data.isEdit) {
       this.title = data.title;
-
+      this.description = data.description;
+      this.status = data.status ;
   }}
 
   onCancelClick(): void {
@@ -29,9 +32,8 @@ export class AddTaskDialogComponent {
   //   this.dialogRef.close(this.title);
   // }
   onSaveClick(): void {
-    if (this.title.trim()) {
-      this.dialogRef.close(this.title.trim());
-
+    if (this.title.trim() && this.description.trim()) {
+      this.dialogRef.close({ title: this.title.trim(), description: this.description.trim(), status: this.status} );
     }
 
   }

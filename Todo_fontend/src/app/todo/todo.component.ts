@@ -30,7 +30,9 @@ export class TodoComponent {
   todo: todo = {
     id: 0,
     title: '',
-    status: 'new todo'
+    description: '',
+    status: '',
+    createdDate: new Date()
   };
   logo: string;
   constructor(private fb: FormBuilder,
@@ -46,6 +48,20 @@ export class TodoComponent {
 
   ngOnInit(): void {
     this.getAllData();
+  }
+
+  //ham tinh so luong todo o moi trang thai
+  countTaskByStatus(status: string): number{
+    switch(status){
+      case'todo':
+        return this.tasks.length;
+      case'inprogress':
+        return this.inprogress.length;
+      case'done':
+        return this.done.length;
+      default:
+        return 0;
+    }
   }
 
   getTodoItems(): void {
@@ -76,40 +92,22 @@ export class TodoComponent {
   }
 
 
-  // addTask(status: string) {
-  //   var item: createTodo = {
-
-  //     title: this.todo.title,
-  //     status: status,
-  //   };
-
-  //   this.todoItemService.createTodoItem(item).subscribe(() => {
-  //     this.getAllData();
-  //   });
-  //   //this.store.dispatch(addTodo({ todo: newTodo }));
-
-  //   this.todo = {
-  //     id: 0,
-  //     title: '',
-  //     status: 'new todo'
-
-  //   };
-  //   this.getAllData()
-  // }
 addTask(status: string): void{
-
   const dialogRef = this.dialog.open(AddTaskDialogComponent,{
-    data: {  isEdit: false }
-  });
 
+    data: {  isEdit: false, status: this.todo.status}
+
+  });
   dialogRef.afterClosed().subscribe(result =>{
     if(result){
-      this.createNewTask(result, status);
+      this.createNewTask(result.title, result.description, status);
+
     }
   })
+
 }
-createNewTask(title: string, status: string):void{
-  const item: createTodo = {title, status};
+createNewTask(title: string, description: string, status: string):void{
+  const item: createTodo = {title, description, status, createdDate: new Date()};
   this.todoItemService.createTodoItem(item).subscribe(() => {
     this.getAllData();
   });
@@ -117,44 +115,22 @@ createNewTask(title: string, status: string):void{
 
 
 
-  /*onEdit(item: todo, i: number) {
-    this.todo = item;
-    this.updateIndex = i;
-    this.isEditEnabled = true;
 
-  }*/
-
-  // updateTask() {
-  //   //const userDto = JSON.parse(sessionStorage.getItem("userDto") as string);
-
-  //   this.todoItemService.updateTodoItem(this.todo)
-  //   /*this.store.dispatch(updateTodo({
-  //     id: this.todo.id,
-  //     updatedTodo: this.todo
-  //   }));*/
-  //   this.todo = {
-  //     id: 0,
-  //     title: '',
-  //     status: 'new todo',
-  //   };
-  //   this.updateIndex = undefined;
-  //   this.isEditEnabled = false;
-  //   console.log(this.todo)
-  // }
   onEdit(item: todo, i: number): void {
     const dialogRef = this.dialog.open(AddTaskDialogComponent, {
-      data: { title: item.title, isEdit: true }
+      data: { title: item.title, description: item.description, isEdit: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.updateTask(item.id, result);
+        this.updateTask(item.id, result.title, result.description);
       }
     });
   }
 
-  updateTask(id: number, title: string): void {
-    this.todoItemService.updateTodoItem({ id, title, status: this.todo.status }).subscribe(() => {
+  updateTask(id: number, title: string, description: string): void {
+    const updatedTodo: todo = {id, title, description, status: this.todo.status, createdDate: new Date()};
+    this.todoItemService.updateTodoItem(updatedTodo).subscribe(() => {
       this.getAllData();
     });
   }

@@ -1,0 +1,13 @@
+mat-form-field {
+    width: 100%;
+}
+
+textarea {
+    max-height: 150px;
+    overflow-y: auto;
+    /* Thêm cuộn dọc nếu cần */
+    word-wrap: break-word;
+    /* Ngắt từ nếu cần */
+    white-space: pre-wrap;
+    /* Bảo toàn khoảng trắng và ngắt dòng */
+}

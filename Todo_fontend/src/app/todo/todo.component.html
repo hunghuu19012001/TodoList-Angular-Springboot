@@ -39,12 +39,13 @@
                             <!--to do-->
                             <div class="todo-head">
                                 <div>
-                                    <h1 class="hed-title">To Do</h1>
+                                    <h1 class="hed-title">To Do ({{countTaskByStatus('todo')}})</h1>
                                 </div>
-                                <div>
+                                <div class="hed-add">
                                     <button mat-icon-button color="primary" (click)="addTask('new todo')">
                                       <mat-icon>add</mat-icon> <!-- Thêm nút New Task -->
                                     </button>
+                                    <p>Add new task</p>
                                 </div>
                             </div>
                             <div class="example-container">
@@ -53,23 +54,31 @@
                                 <div style="width: auto;" cdkDropList [cdkDropListData]="tasks" class="example-list" (cdkDropListDropped)="drop($event)">
                                     <div class="example-box" *ngFor="let item of tasks; let i = index" cdkDrag>
                                         <div class="box">
-                                            <span class="item-title">{{item.title}}</span>
-                                            <!-- <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button>
-                                        <button mat-icon-button color="primary" (click)="onEdit(item,i)"><mat-icon>edit</mat-icon></button> -->
-                                            <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
-                                          <mat-icon>more_vert</mat-icon>
-                                        </button>
-                                            <mat-menu #option="matMenu">
-                                                <button mat-menu-item (click)="deleteTask(item)">
-                                            <mat-icon>delete</mat-icon>
-                                            <span>Delete</span>
-                                            </button>
+                                            <div class="box-todo">
+                                                <span class="item-title">{{item.title}}</span>
+                                                <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu #option="matMenu">
+                                                    <button mat-menu-item (click)="deleteTask(item)">
+                                              <mat-icon>delete</mat-icon>
+                                              <span>Delete</span>
+                                              </button>
 
-                                                <button mat-menu-item (click)="onEdit(item,i)">
-                                            <mat-icon>edit</mat-icon>
-                                            <span>Edit</span>
-                                            </button>
-                                            </mat-menu>
+                                                    <button mat-menu-item (click)="onEdit(item,i)">
+                                              <mat-icon>edit</mat-icon>
+                                              <span>Edit</span>
+                                              </button>
+                                                </mat-menu>
+                                            </div>
+                                            <div class="box-todo-des">
+                                                <span class="item-description">{{item.description}}</span>
+
+                                            </div>
+                                            <div class="box-created">
+                                                <p class="item-created-date">{{item.createdDate | date}}</p>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -82,12 +91,13 @@
                             <!--inprogress-->
                             <div class="inprogress-head">
                                 <div>
-                                    <h1 class="hed-title">In Progress</h1>
+                                    <h1 class="hed-title">In Progress ({{countTaskByStatus('inprogress')}})</h1>
                                 </div>
-                                <div>
+                                <div class="hed-add">
                                     <button mat-icon-button color="primary" (click)="addTask('in progress')">
-                                  <mat-icon>add</mat-icon> <!-- Thêm nút New Task -->
-                              </button>
+                                    <mat-icon>add</mat-icon> <!-- Thêm nút New Task -->
+                                  </button>
+                                    <p>Add new task</p>
                                 </div>
                             </div>
 
@@ -99,23 +109,34 @@
                                     <div class="example-box" *ngFor="let item of inprogress; let i=index" cdkDrag>
 
                                         <div class="box">
-                                            <span class="item-title">{{item.title}}</span>
+                                            <div class="box-todo">
+                                                <span class="item-title">{{item.title}}</span>
+                                                <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
+                                                  <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu #option="matMenu">
+                                                    <button mat-menu-item (click)="deleteTask(item)">
+                                                    <mat-icon>delete</mat-icon>
+                                                    <span>Delete</span>
+                                                    </button>
+
+                                                    <button mat-menu-item (click)="onEdit(item,i)">
+                                                    <mat-icon>edit</mat-icon>
+                                                    <span>Edit</span>
+                                                    </button>
+                                                </mat-menu>
+                                            </div>
+                                            <div class="box-todo-des">
+                                                <span class="item-description">{{item.description}}</span>
+
+                                            </div>
+                                            <div class="box-created">
+                                                <p class="item-created-date">{{item.createdDate | date}}</p>
+
+                                            </div>
                                             <!-- <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button>
                                             <button mat-icon-button color="primary" (click)="onEdit(item,i)"><mat-icon>edit</mat-icon></button> -->
-                                            <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
-                                              <mat-icon>more_vert</mat-icon>
-                                            </button>
-                                            <mat-menu #option="matMenu">
-                                                <button mat-menu-item (click)="deleteTask(item)">
-                                                <mat-icon>delete</mat-icon>
-                                                <span>Delete</span>
-                                                </button>
 
-                                                <button mat-menu-item (click)="onEdit(item,i)">
-                                                <mat-icon>edit</mat-icon>
-                                                <span>Edit</span>
-                                                </button>
-                                            </mat-menu>
                                         </div>
                                     </div>
                                 </div>
@@ -130,15 +151,11 @@
 
                             <div class="done-head">
                                 <div>
-                                    <h1 class="hed-title">Done</h1>
+                                    <h1 class="hed-title">Done ({{countTaskByStatus('done')}})</h1>
                                 </div>
-                                <div>
-
-                                    <button mat-icon-button color="primary" (click)="addTask('done')">
-                                        <mat-icon>add</mat-icon> <!-- Thêm nút New Task -->
-
-                                    </button>
-
+                                <div class="hed-add">
+                                    <button mat-icon-button color="primary" (click)="addTask('done')"><mat-icon>add</mat-icon> <!-- Thêm nút New Task --></button>
+                                    <p>Add new task</p>
                                 </div>
                             </div>
                             <!-- <div class="col-md-4"> -->
@@ -150,20 +167,36 @@
                                     <div class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
 
                                         <div class="box">
-                                            <span class="item-title">{{item.title}}</span>
-                                            <!-- <button mat-icon-button color="warn" (click)="deleteTask(item)"><mat-icon>delete</mat-icon></button> -->
-                                            <button mat-icon-button color="primary"><mat-icon>check_circle</mat-icon></button>
+                                            <div class="box-todo">
+                                                <span class="item-title">{{item.title}}</span>
+                                                <div>
+                                                    <button mat-icon-button><mat-icon>check_circle</mat-icon></button>
 
-                                            <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
-                                            <mat-icon>more_vert</mat-icon>
-                                          </button>
-                                            <mat-menu #option="matMenu">
-                                                <button mat-menu-item (click)="deleteTask(item)">
-                                              <mat-icon>delete</mat-icon>
-                                              <span>Delete</span>
-                                              </button>
+                                                    <button mat-icon-button [matMenuTriggerFor]="option" aria-label="Example icon-button with a menu">
+                                                  <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                    <mat-menu #option="matMenu">
+                                                        <button mat-menu-item (click)="deleteTask(item)">
+                                                    <mat-icon>delete</mat-icon>
+                                                    <span>Delete</span>
+                                                    </button>
 
-                                            </mat-menu>
+                                                        <button mat-menu-item (click)="onEdit(item,i)">
+                                                    <mat-icon>edit</mat-icon>
+                                                    <span>Edit</span>
+                                                    </button>
+                                                    </mat-menu>
+                                                </div>
+                                            </div>
+                                            <div class="box-todo-des">
+                                                <span class="item-description">{{item.description}}</span>
+
+                                            </div>
+                                            <div class="box-created">
+                                                <p class="item-created-date">{{item.createdDate | date}}</p>
+
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -174,11 +207,7 @@
             </div>
         </div>
     </div>
-    <!-- <section class="heading-section">
-        <div class="logo">
-            <img [src]="logo" alt="">
-        </div>
-    </section> -->
+
 
 
 </div>
