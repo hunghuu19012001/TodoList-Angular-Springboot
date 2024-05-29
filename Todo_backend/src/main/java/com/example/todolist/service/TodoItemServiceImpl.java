@@ -31,15 +31,16 @@ public class TodoItemServiceImpl implements TodoItemService {
         Optional<TodoItem> todo = todoRepo.findById(id);
         if(todo.isPresent())
             return todo.get();
-        throw new NotFoundException("done");
+        throw new NotFoundException("Todo not found");
         }
 
 
     @Override
     public TodoItem updateTodoItem(Integer id, TodoItem todoItemRequest) {
-        TodoItem todoItem = todoRepo.findById(id).get();
+        TodoItem todoItem = todoRepo.findById(id).orElseThrow(() -> new NotFoundException("Todo not found"));
 
         todoItem.setTitle(todoItemRequest.getTitle());
+        todoItem.setDescription(todoItemRequest.getDescription());
         todoItem.setStatus(todoItemRequest.getStatus());
         return todoRepo.save(todoItem);
     }
@@ -47,6 +48,7 @@ public class TodoItemServiceImpl implements TodoItemService {
     public TodoItem createTodoItem(TodoItemCreateDto todoItem) {
         TodoItem todo = new TodoItem();
         todo.setTitle(todoItem.getTitle());
+        todo.setDescription(todoItem.getDescription());
         todo.setStatus(todoItem.getStatus());
         return todoRepo.save(todo);
     }
@@ -63,7 +65,7 @@ public class TodoItemServiceImpl implements TodoItemService {
 
     @Override
     public void deleteTodoItem(Integer id) {
-        TodoItem todoItem = todoRepo.findById(id).get();
+        TodoItem todoItem = todoRepo.findById(id).orElseThrow(() -> new NotFoundException("Todo not found"));
         todoRepo.delete(todoItem);
     }
 

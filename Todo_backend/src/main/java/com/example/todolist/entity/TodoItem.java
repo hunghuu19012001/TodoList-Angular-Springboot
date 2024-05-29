@@ -21,6 +21,7 @@ public class TodoItem extends Auditable<String> {
     private Integer id;
 
     private String title;
+    private String description;
     private String status;
 
 

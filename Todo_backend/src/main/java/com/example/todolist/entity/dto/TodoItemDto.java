@@ -16,6 +16,7 @@ import java.util.Date;
 public class TodoItemDto {
     private Integer id;
     private String title;
+    private String description;
     private String status;
     @CreatedBy
     private String createdBy;

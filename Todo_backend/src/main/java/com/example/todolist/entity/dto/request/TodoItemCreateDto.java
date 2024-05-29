@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class TodoItemCreateDto {
     private String title;
     private String status;
+    private String description;
 
     private String createdBy;
 
